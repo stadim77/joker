@@ -1,0 +1,117 @@
+# filename myjoker.kv
+# import prox jokerApp.py
+
+<ScreenManagement>:
+    IntroScreen:
+        name: 'Intro'
+    SelectScreen:
+        name: 'Select'
+    InputScreen:
+        name: 'Input'
+    FinalScreen:
+        name: 'Final'
+
+<IntroScreen>:
+    BoxLayout:
+        cols: 1
+        orientation:'vertical'
+        padding: 15
+        size: root.width, root.height
+        canvas.before:
+            Color:
+                rgba:(1,0.4,0.45,1)
+            Rectangle:
+                size: root.width, root.height * 0.8
+                pos: self.pos
+
+
+    Label:
+        text:'My Joker App!!!'
+        font_size:48
+        size_hint: 1, 1.2
+        size: self.texture_size
+
+    Label:
+        text:'by Stavros Dimopoulos'
+        font_size:32
+        size: self.texture_size
+        canvas.before:
+            Color:
+                rgba:(1,0.8,0,1)
+            Rectangle:
+                size: self.width, self.height * 0.5
+                pos: root.pos
+
+        BoxLayout:
+            cols: 2
+            orientation:'vertical'
+            padding: 15
+            size: self.width, self.height
+
+            Button:
+                text: 'Enter'
+                on_press: root.manager.current = 'Select'
+
+            Button:
+                text: 'Exit'
+                on_press: app.stop()
+
+<SelectScreen>:
+    BoxLayout:
+        cols: 1
+        orientation:'vertical'
+        padding: 15
+        size: root.width, root.height
+        canvas.before:
+            Color:
+                rgba:(1,0.1,0.15,1)
+            Rectangle:
+                size: root.width, root.height * 0.6
+                pos: self.pos
+
+    Label:
+        text:'Select one year from 2009 to 2021'
+        font_size: 36
+
+<MyGrid>:
+    BoxLayout:
+        cols: 1
+        orientation:'vertical'
+        padding: 15
+        size: root.width, root.height
+        canvas.before:
+            Color:
+                rgba:(1,0.4,0.45,1)
+            Rectangle:
+                size: root.width, root.height * 0.8
+                pos: self.pos
+
+
+        Label:
+            text:'My Joker App!!!'
+            font_size:48
+
+        Label:
+            text:'by Stavros Dimopoulos'
+            font_size:32
+            canvas.before:
+                Color:
+                    rgba:(1,0.8,0,1)
+                Rectangle:
+                    size: self.width, self.height * 0.8
+                    pos: self.pos
+
+        BoxLayout:
+            cols: 2
+            orientation:'vertical'
+            padding: 15
+            size: root.width, root.height
+
+            Button:
+                text: 'Enter'
+
+            Button:
+                text: 'Exit'
+                on_press: app.stop()
+
+
