@@ -12,10 +12,11 @@ from kivy.uix.button import Button
 from kivy.uix.popup import Popup
 from kivy.uix.screenmanager import ScreenManager, Screen
 
-nums = set()
+nums = list()
 myset = set()
 set_click= set()
 joker: List[Any] = []
+year = []
 
 files = {'2009':'Joker_2009.xlsx','2010': 'Joker_2010.xlsx', '2011':'Joker_2011.xlsx', '2012':'Joker_2012.xlsx', '2013':'Joker_2013.xlsx',
          '2014':'Joker_2014.xlsx', '2015':'Joker_2015.xlsx', '2016': 'Joker_2016.xlsx', '2017':'Joker_2017.xlsx', '2018':'Joker_2018.xlsx',
@@ -97,7 +98,10 @@ class MyJokerApp(App):
     def btn_press(self, button):
         myset.add(button.text)
         if len(nums) < 5:
-            nums.add(int(button.text))
+            if int(button.text) not in nums:
+                nums.append(int(button.text))
+            else:
+                pass
         else:
             show_popup()
             pass
@@ -121,6 +125,7 @@ class MyJokerApp(App):
 
     def call(self, button):
         '''return the value of the selected YEAR'''
+        year.append(files[button.text])
         print(files[button.text])
         return button.text
 
@@ -136,11 +141,11 @@ class MyJokerApp(App):
 
     def erase(self):
         if len(nums) > 1:
-            nums.pop()
+            nums.pop(-1)
         else:
             pass
-        print(nums)
-        return nums
+        print(set(nums))
+        return set(nums)
 
     def disable_btn(self):
         if self.validate() == True:
@@ -148,8 +153,14 @@ class MyJokerApp(App):
         else:
             self.ids.final_check_button.disabled = True
 
+    def refresh(self):
+        ''' clear previous selections'''
+        return nums.clear(), joker.clear(), myset.clear(), year.clear()
 
+    def unique(self):
+        return set(nums)
 
 label = MyJokerApp()
 
 label.run()
+

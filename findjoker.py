@@ -21,7 +21,7 @@ print(len(df['Unnamed: 7'])) # the total number of events or jokers
 
 am = list(df['Unnamed: 7'])
 
-print(am)
+# print(am)
 
 
 # print(am[:8]) # print the first 8 joker numbers from list
@@ -125,7 +125,7 @@ def cuts(dataframe,mun):
 
 #cuts(df,[10,18,19,4,29])
 cuts(df,[3, 1, 28, 21, 19])
-cuts(df,[38, 1, 28, 42, 41])
+cuts(df,[38, 1, 28, 2, 41])
 
 def rowbyrow(dataframe):
     '''find the common numbers between consecutive rows of dataframe'''
